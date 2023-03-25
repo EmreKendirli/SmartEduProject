@@ -4,7 +4,6 @@
   "description": "Education portal",
   "main": "app.js",
   "scripts": {
-    
     "start": "nodemon app.js"
   },
   "keywords": [
@@ -15,6 +14,7 @@
   "author": "Emre Kendirli",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.9",
     "express": "^4.18.2"
   },
   "devDependencies": {
