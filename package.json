@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Education portal",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon app.js"
   },
@@ -14,8 +15,11 @@
   "author": "Emre Kendirli",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3",
+    "slugify": "^1.6.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
