@@ -1,6 +1,8 @@
 import  express  from "express";
 import pageRoute from "./router/pageRoute.js";
 import courseRoute from "./router/courseRoute.js";
+import categoryRoute from "./router/categoryRoute.js"
+import userRoute from "./router/userRoute.js"
 import dotenv from "dotenv";
 import conn from "./db.js"
 
@@ -23,6 +25,8 @@ app.use(express.urlencoded({
 //routers
 app.use("/",pageRoute);
 app.use("/courses",courseRoute);
+app.use("/categories",categoryRoute);
+app.use("/users",userRoute);
 
 
  const port =3000;

@@ -22,6 +22,10 @@ const courseSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    category:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Category"
     }
 });
 courseSchema.pre("validate", function (next) {
