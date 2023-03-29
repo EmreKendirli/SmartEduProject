@@ -1,4 +1,6 @@
 import  express  from "express";
+import session from'express-session';
+
 import pageRoute from "./router/pageRoute.js";
 import courseRoute from "./router/courseRoute.js";
 import categoryRoute from "./router/categoryRoute.js"
@@ -20,9 +22,21 @@ app.use(express.json());//req.body gelen verileri okumak için lazım
 app.use(express.urlencoded({
    extended: true
 }))//req.body gelen verileri okumak için lazım
+app.use(
+   session({
+     secret: 'my_keyboard_cat', // Buradaki texti değiştireceğiz.
+     resave: false,
+     saveUninitialized: true,
+   })
+ );
 
+global.userIN=null;
 
 //routers
+app.use("*",(req,res,next) =>{
+   userIN=req.session.userId,
+   next()
+})
 app.use("/",pageRoute);
 app.use("/courses",courseRoute);
 app.use("/categories",categoryRoute);

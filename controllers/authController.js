@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import bcrypt from "bcrypt";
 
 
+
 const createUser = async (req, res) => {
 
     try {
@@ -31,7 +32,8 @@ const userLogin = async (req, res) => {
         if (userCheck) {         
             const same =await bcrypt.compare(password,userCheck.password)
             if (same) {
-                res.status(200).send("you are loggin in");  
+                req.session.userId=userCheck._id;
+                res.status(200).redirect("/users/dashboard");
             }
             else{
                 res.status(400).json({
@@ -47,7 +49,27 @@ const userLogin = async (req, res) => {
         })
     }
 }
+
+const userLogout=async (req,res)=>{
+   req.session.destroy(()=>{
+    res.status(200).redirect("/");
+   })
+}
+
+const userDashboardPage = async (req,res)=>{
+    try {
+        const user = await User.findOne({_id:req.session.userId})
+        res.status(200).render("dashboard",{
+            page_Name:"dashboard",
+            user
+        })
+    } catch (error) {
+        
+    }
+}
 export {
     createUser,
-    userLogin
+    userLogin,
+    userLogout,
+    userDashboardPage
 };
